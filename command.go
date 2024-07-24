@@ -369,6 +369,7 @@ var Settings = map[string]CommandFunc{
 	"MarginFill":    ExecuteSetMarginFill,
 	"Margin":        ExecuteSetMargin,
 	"WindowBar":     ExecuteSetWindowBar,
+	"WindowTitle":   ExecuteSetWindowTitle,
 	"WindowBarSize": ExecuteSetWindowBarSize,
 	"BorderRadius":  ExecuteSetBorderRadius,
 	"CursorBlink":   ExecuteSetCursorBlink,
@@ -506,6 +507,7 @@ func ExecuteSetTheme(c parser.Command, v *VHS) error {
 
 	v.Options.Video.Style.BackgroundColor = v.Options.Theme.Background
 	v.Options.Video.Style.WindowBarColor = v.Options.Theme.Background
+	v.Options.Video.Style.WindowTitleColor = v.Options.Theme.Foreground
 
 	return nil
 }
@@ -585,6 +587,11 @@ func ExecuteSetMargin(c parser.Command, v *VHS) error {
 // ExecuteSetWindowBar sets window bar type
 func ExecuteSetWindowBar(c parser.Command, v *VHS) error {
 	v.Options.Video.Style.WindowBar = c.Args
+	return nil
+}
+
+func ExecuteSetWindowTitle(c parser.Command, v *VHS) error {
+	v.Options.Video.Style.WindowTitle = c.Args
 	return nil
 }
 
